@@ -3,9 +3,7 @@
 Flask is pretty awesome, but, at the time of this writting, it does
 not provide functionaliy for stopping an *in-process* web service.
 For example, we really wanted something like the following: 
-
 <pre> 
-
 def start(): 
     app.run(...)
 
@@ -15,9 +13,7 @@ t.start(()
   ... get down on it ...
 
 app.stop()
-
 </pre>
-
 We created this module to fill the gap.  It consists of 2 classes:
 FlaskMonitor and FlaskController.  An instance of FlaskController can
 be used to start and stop a flask web service.  The FlaskController
@@ -26,7 +22,6 @@ FlaskController creates a separate process to run the flask web
 service and uses Python IPC to control it.
 
 An example follows.
-
 <pre>
 # Copyright 2012 James Percent <james@syndeticlogic.org>
 
@@ -56,7 +51,6 @@ def start():
     print request_data
     eb.stop()
     eb.await()
-
 </pre>
 
 The example starts flask in another process and waits for the 1st
@@ -71,11 +65,11 @@ $ python example.py
 
 In the other terminal, do something like the following.
 
-<code>
+<pre>
 $ cat <<EOF >out
 > We'll create a text file, then use curl to transfer it to the 
 > in-process web server we started in the other terminal. 
 > 
 > EOF
 $ curl -T out http://localhost:5000/example-put
-</code>
+</pre>
