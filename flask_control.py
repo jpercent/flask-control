@@ -46,7 +46,7 @@ class FlaskMonitor(object):
 def start_flask(Q, get_app, sync_request_data):
     app = get_app()
     fm = FlaskMonitor(Q, app)
-    if sync_request_data != None:
+    if sync_request_data == True:
         app.after_request(fm.after_request)
     app.run(host='0.0.0.0')    
         
