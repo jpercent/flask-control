@@ -14,14 +14,12 @@
 #
 # Copyright 2012 James Percent <james@syndeticlogic.org>
 #
-import sys
 from flask import Flask, request
-from time import sleep
 from flask_control import FlaskController
-#
+
 # This module demonstrates how to use the flask_control module. For more
 # information see http://github.com/jpercent/flask-control
-#
+
 app = Flask(__name__)
         
 @app.route("/example-put", methods=['PUT'])

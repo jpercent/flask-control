@@ -71,11 +71,11 @@ $ python example.py
 
 In the other terminal, do something like the following.
 
-<pre>
-$ cat \<\<EOF \>out
+<code>
+$ cat <<EOF >out
 > We'll create a text file, then use curl to transfer it to the 
 > in-process web server we started in the other terminal. 
 > 
 > EOF
 $ curl -T out http://localhost:5000/example-put
-</pre>
+</code>
