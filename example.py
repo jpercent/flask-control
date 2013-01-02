@@ -34,12 +34,12 @@ def get_app():
     return app
 
 def start():
-    eb = FlaskController(get_app, True)
-    eb.start()
-    request_data = eb.next()
+    fc = FlaskController(get_app, True)
+    fc.start()
+    request_data = fc.next()
     print request_data
-    eb.stop()
-    eb.await()
+    fc.stop()
+    fc.await()
 
 if __name__ == '__main__':
     start()
