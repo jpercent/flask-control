@@ -72,7 +72,7 @@ $ python example.py
 In the other terminal, do something like the following.
 
 <pre>
-$ cat <<EOF >out
+$ cat \<\<EOF \>out
 > We'll create a text file, then use curl to transfer it to the 
 > in-process web server we started in the other terminal. 
 > 
