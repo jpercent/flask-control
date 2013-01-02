@@ -1,9 +1,7 @@
 ### Overview 
-
 Flask is pretty awesome, but out of the box it does not provide a
-mechanism for stopping the web service.  As example, we wanted
+mechanism for stopping the web service.  As an example, we wanted
 something like the following:
-
 <pre> 
 def start(): 
     app.run(...)
@@ -15,7 +13,6 @@ t.start()
 
 app.stop()
 </pre>
-
 But in the current version of flask, which is *0.9*, this is not
 possible.  When running *in-process* this can be painful because the
 entire process needs to be externally killed to restart the web
