@@ -1,25 +1,26 @@
-### Overview
-
-Flask is pretty awesome, but, at the time of this writting, it does
-not provide functionaliy for stopping an *in-process* web service.
-For example, we really wanted something like the following: 
+### Overview Flask is pretty awesome, but it does not provide a
+mechanism for stopping an *in-process* web service.  For example, we
+wanted something like the following:
 <pre> 
 def start(): 
     app.run(...)
 
 t = Thread(target=start, ...)
-t.start(()
+t.start()
 
   ... get down on it ...
 
 app.stop()
 </pre>
-We created this module to fill the gap.  It consists of 2 classes:
-FlaskMonitor and FlaskController.  An instance of FlaskController can
-be used to start and stop a flask web service.  The FlaskController
-creates a FlaskMonitor that can return the request data.  The
-FlaskController creates a separate process to run the flask web
-service and uses Python IPC to control it.
+But in flask *0.9*, no such functionality is available, so we
+created flask_control.py to fill the gap.  
+
+The flask_control module consists of 2 classes: FlaskMonitor and
+FlaskController.  An instance of FlaskController can be used to start
+and stop a flask web service.  The FlaskController creates a
+FlaskMonitor that can return the request data.  The FlaskController
+creates a separate process to run the flask web service and uses
+Python IPC to control and communicate with it.
 
 An example follows.
 <pre>
@@ -28,7 +29,7 @@ An example follows.
 from flask import Flask, request
 from flask_control import FlaskController
 
-# This example demonstrates how to use the FlaskController module.  For more
+# This example demonstrates how to use the flask_control module.  For more
 # information see http://github.com/jpercent/flask-controller.
 
 app = Flask(__name__)
@@ -65,11 +66,9 @@ $ python example.py
 
 In the other terminal, do something like the following.
 
-<pre>
-$ cat <<EOF >out
-> We'll create a text file, then use curl to transfer it to the 
-> in-process web server we started in the other terminal. 
-> 
-> EOF
-$ curl -T out http://localhost:5000/example-put
-</pre>
+[tab]$ cat <<EOF >out
+[tab]> We'll create a text file, then use curl to transfer it to the 
+[tab]> in-process web server we started in the other terminal. 
+[tab]> 
+[tab]> EOF
+[tab]$ curl -T out http://localhost:5000/example-put
